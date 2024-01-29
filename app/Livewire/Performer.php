@@ -12,6 +12,6 @@ class Performer extends Component
     public function render()
     {
         $this->performers = TicketeroAdapter::getByPerformer($this->id);
-        return view('livewire.performer', );
+        return view('livewire.performer');
     }
 }
