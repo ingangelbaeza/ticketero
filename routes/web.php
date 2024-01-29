@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/ticketero', \App\Livewire\Ticketero::class)->name('ticketeros');
+Route::get('/ticketero/performer/{id}', \App\Livewire\Performer::class)->name('ticketeros.performer');
+Route::get('/ticketero/venue/{id}', \App\Livewire\Venue::class)->name('ticketeros.venue');
+Route::get('/ticketero/destination/{latitude}/{longitude}/{city}', \App\Livewire\Destination::class)->name('ticketeros.destination');
 
 Route::middleware([
     'auth:sanctum',

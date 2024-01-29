@@ -71,12 +71,13 @@
                                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">lng</th>
                                                     <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"> radius</th>
                                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">airport</th>
-                                                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"> typeSearch</th>
+                                                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">typeSearch</th>
+                                                    <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">api</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                                 @if(isset($results))
-                                                    @foreach($results['destinations'] as $item)
+                                                    @foreach($results['data']['results']['destinations'] as $item)
                                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                  {{ $item['id'] }}
@@ -108,11 +109,13 @@
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                   {{ $item['typeSearch'] }}
                                                             </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                                <x-button.button-base label="ver"
+                                                                                      action="destination({{ $item['lat'] }}, {{ $item['lng'] }}, '{{ $item['name'] }}')"/>
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
-
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -151,11 +154,12 @@
                                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">id</th>
                                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">name</th>
                                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">typeSearch</th>
+                                                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">api</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                                 @if(isset($results))
-                                                    @foreach($results['performers'] as $item)
+                                                    @foreach($results['data']['results']['performers'] as $item)
                                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                 {{ $item['id'] }}
@@ -165,6 +169,9 @@
                                                             </td>
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                 {{ $item['typeSearch'] }}
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                                <x-button.button-base label="ver" action="performer({{ $item['id'] }})"/>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -211,7 +218,7 @@
                                                 </thead>
                                                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                                 @if(isset($results))
-                                                    @foreach($results['venues'] as $item)
+                                                    @foreach($results['data']['results']['venues'] as $item)
                                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                 {{ $item['id'] }}
@@ -221,6 +228,9 @@
                                                             </td>
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                 {{ $item['typeSearch'] }}
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                                <x-button.button-base label="ver" action="venue({{ $item['id'] }})"/>
                                                             </td>
                                                         </tr>
                                                     @endforeach

@@ -43,10 +43,10 @@ class Ticketero extends Controller
             'searchType' => $data['searchType'],
             'withPerformers' => $data['withPerformers'],
             'destination' =>[
-                'latitude' => $data['latitude'],
-                'longitude' => $data['longitude'],
-                'radius' => $data['radius'],
-                'city' => $data['city'],
+                'latitude' => $data['destination']['latitude'],
+                'longitude' => $data['destination']['longitude'],
+                'radius' => $data['destination']['radius'],
+                'city' => $data['destination']['city'],
             ]
         ];
         try {

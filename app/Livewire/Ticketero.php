@@ -14,12 +14,26 @@ class Ticketero extends Component
 
     public function render()
     {
+        $this->search = 'dallas';
         return view('livewire.ticketero');
     }
 
     public function aaa()
     {
         $this->validate();
-        $this->results = TicketeroAdapter::getAutocomplete(q: $this->search, limit: 10)['data']['results'];
+        $this->results = TicketeroAdapter::getAutocomplete(q: $this->search, limit: 10);
+    }
+
+    public function performer($id)
+    {
+        return redirect(route('ticketeros.performer', $id));
+    }
+    public function venue($id)
+    {
+        return redirect(route('ticketeros.venue', $id));
+    }
+    public function destination($latitude, $longitude, $city)
+    {
+        return redirect(route('ticketeros.destination', [$latitude, $longitude, $city]));
     }
 }

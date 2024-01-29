@@ -18,24 +18,36 @@ class TicketeroAdapter implements TicketeroPort
         $parameters = [
             'startDate' => $data['startDate'],
             'endDate' => $data['endDate'],
-            'searchType' => $data['searchType'],
-            'withPerformers' => $data['withPerformers'],
+            'searchType' => 'destination',
+            'withPerformers' => false,
             'destination' =>[
-                'latitude' => $data['latitude'],
-                'longitude' => $data['longitude'],
-                'radius' => $data['radius'],
-                'city' => $data['city'],
+                'latitude' => $data['destination']['latitude'],
+                'longitude' => $data['destination']['longitude'],
+                'radius' => $data['destination']['radius'],
+                'city' => $data['destination']['city'],
             ]
         ];
+
+        return (new Ticketero())->getByDestination(data: $parameters);
     }
 
-    public static function getByPerformer(array $data)
+    public static function getByPerformer(int $id)
     {
-        // TODO: Implement getByPerformer() method.
+        $parameters = [
+            'searchType' => 'performer',
+            'performerId' => $id,
+            'withPerformers' => false,
+        ];
+        return (new Ticketero())->getByPerformer(data: $parameters);
     }
 
-    public static function getByVenue(array $data)
+    public static function getByVenue(int $id)
     {
-        // TODO: Implement getByVenue() method.
+        $parameters = [
+            'searchType' => 'venue',
+            'performerId' => $id,
+            'withPerformers' => false,
+        ];
+        return (new Ticketero())->getByVenue(data: $parameters);
     }
 }
