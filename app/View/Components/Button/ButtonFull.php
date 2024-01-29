@@ -1,34 +1,27 @@
 <?php
 
-namespace App\View\Components\Input;
+namespace App\View\Components\Button;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class InputBase extends Component
+class ButtonFull extends Component
 {
     public string $label;
-    public string $name;
+    public string $action;
     public string $type;
-    public bool $required;
     public string $customClass;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        string $label,
-        string $name,
-        string $type = 'text',
-        bool $required = false,
-        string $customClass = ''
-    )
+    public function __construct(string $label, string $action, string $type = 'button', string $customClass = '')
     {
+        //
         $this->label = $label;
-        $this->name = $name;
+        $this->action = $action;
         $this->type = $type;
-        $this->required = $required;
         $this->customClass = $customClass;
     }
 
@@ -37,6 +30,6 @@ class InputBase extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.input.input-base');
+        return view('components.button.button-full');
     }
 }

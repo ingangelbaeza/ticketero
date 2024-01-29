@@ -8,17 +8,17 @@ use Livewire\Component;
 
 class Ticketero extends Component
 {
-    #[Validate('required|string|max:255')]
+    #[Validate('required', message: 'El campo es requerido')]
+    #[Validate('max:255',message: 'El campo acepta maximo 255 caracteres')]
     public $search;
     public $results;
 
     public function render()
     {
-        $this->search = 'dallas';
         return view('livewire.ticketero');
     }
 
-    public function aaa()
+    public function send()
     {
         $this->validate();
         $this->results = TicketeroAdapter::getAutocomplete(q: $this->search, limit: 10);
